@@ -119,17 +119,22 @@ form_1.addEventListener("submit", registered = (e) => {
 // Sign up
 form_2.addEventListener("submit", (e) => {
     e.preventDefault();
-    if (second_content_password.value == repeat_password.value && second_content_username.value.length) {
+    const test = second_content_password.value == repeat_password.value && repeat_password.value.length && second_content_password.value && second_content_username.value.length &&
+        repeat_password.value.length > 10 && second_content_password.value.length > 10;
+    if (test) {
         btn_2.textContent = "passed the register"
         username = second_content_username.value;
         password = second_content_password.value;
         btn_2.textContent = "registered"
         btn_2.style.backgroundColor = "green"
         btn_2.style.color = "#fff"
-    } else {
-        btn_2.textContent = "There is the error"
-        btn_2.style.backgroundColor = "#fff";
+    } else if (second_content_password.value.length < 10 || repeat_password.value.length < 10) {
+        btn_2.textContent = "This is a simple code, enter a more difficult code"
+        btn_2.style.backgroundColor = "#fff"
+        btn_2.style.color = "red"
+    } else if (second_content_password.value != repeat_password.value) {
+        btn_2.textContent = "The re-entered password is incorrect"
+        btn_2.style.backgroundColor = "#fff"
         btn_2.style.color = "red"
     }
 })
-
