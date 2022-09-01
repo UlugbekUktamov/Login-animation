@@ -93,7 +93,7 @@ form_1.addEventListener("submit", registered = (e) => {
         btn.style.backgroundColor = "green"
         btn.style.color = "#fff"
         btn.textContent = "✓"
-        form_1.removeEventListener("submit", register);
+        form_1.removeEventListener("submit", registered);
         btn.type = "button"
     } else if (!first_content_password.value.length || !first_content_username.value.length) {
         btn.textContent = "register";
@@ -117,24 +117,28 @@ form_1.addEventListener("submit", registered = (e) => {
 
 
 // Sign up
-form_2.addEventListener("submit", (e) => {
+form_2.addEventListener("submit", registered = (e) => {
     e.preventDefault();
     const test = second_content_password.value == repeat_password.value && repeat_password.value.length && second_content_password.value && second_content_username.value.length &&
-        repeat_password.value.length > 10 && second_content_password.value.length > 10;
+        repeat_password.value.length > 7 && second_content_password.value.length > 7;
     if (test) {
-        btn_2.textContent = "passed the register"
         username = second_content_username.value;
         password = second_content_password.value;
         btn_2.textContent = "registered"
         btn_2.style.backgroundColor = "green"
+        form_2.removeEventListener("submit", registered);
+        btn_2.type = "button"
         btn_2.style.color = "#fff"
-    } else if (second_content_password.value.length < 10 || repeat_password.value.length < 10) {
-        btn_2.textContent = "This is a simple code, enter a more difficult code"
-        btn_2.style.backgroundColor = "#fff"
-        btn_2.style.color = "red"
     } else if (second_content_password.value != repeat_password.value) {
         btn_2.textContent = "The re-entered password is incorrect"
         btn_2.style.backgroundColor = "#fff"
         btn_2.style.color = "red"
+    }
+    else if (second_content_password.value.length < 10 || repeat_password.value.length < 10) {
+        btn_2.textContent = "This is a simple code, enter a more difficult code"
+        btn_2.style.backgroundColor = "#fff"
+        btn_2.style.color = "red"
+    } else {
+        btn_2.textContent = "passed the register"
     }
 })
